@@ -1,9 +1,9 @@
 #!/bin/bash
 
-THERMAL=`awk '{print $2}' /proc/acpi/ibm/thermal`
+THERMAL=`acpi -t | awk '{print $4}'`
 COLOR="white"
 
-if (( THERMAL >= 80 )) ; then
+if [ `echo "${THERMAL} >= 80" | bc` == 1 ] ; then
 	COLOR="red"
 fi
 
